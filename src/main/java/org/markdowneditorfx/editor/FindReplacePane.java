@@ -44,7 +44,6 @@ import org.fxmisc.richtext.MultiChangeBuilder;
 import org.fxmisc.richtext.model.TwoDimensional.Bias;
 import org.fxmisc.wellbehaved.event.Nodes;
 import org.markdowneditorfx.Messages;
-import org.markdowneditorfx.util.PrefsBooleanProperty;
 import org.markdowneditorfx.util.Range;
 import org.markdowneditorfx.util.Utils;
 import org.tbee.javafx.scene.layout.fxml.MigPane;
