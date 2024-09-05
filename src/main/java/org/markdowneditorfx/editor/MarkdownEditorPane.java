@@ -51,9 +51,9 @@ import javafx.scene.control.IndexRange;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import org.fxmisc.flowless.VirtualizedScrollPane;
-import org.fxmisc.richtext.CaretNode;
 import org.fxmisc.richtext.CharacterHit;
 import org.fxmisc.undo.UndoManager;
 import org.fxmisc.wellbehaved.event.Nodes;
@@ -132,6 +132,10 @@ public class MarkdownEditorPane {
 			hideContextMenu();
 		});
 
+		textArea.addEventHandler(ContextMenuEvent.CONTEXT_MENU_REQUESTED, this::showContextMenu);
+		textArea.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> hideContextMenu());
+		textArea.focusedProperty().addListener(e -> hideContextMenu());
+
 		smartEdit = new SmartEdit(this, textArea);
 
 		// create scroll pane
@@ -179,44 +183,44 @@ public class MarkdownEditorPane {
 		canRedo.bind(getUndoManager().redoAvailableProperty());
 
 		//region Actions
-		Action editUndoAction = new Action(Messages.get("MainWindow.editUndoAction"), "Shortcut+Z", UNDO,
+		Action editUndoAction = new Action(Messages.get("MarkdownEditorPane.editUndoAction"), "Shortcut+Z", UNDO,
 			this::undo, canUndo.not());
-		Action editRedoAction = new Action(Messages.get("MainWindow.editRedoAction"), "Shortcut+Y", REPEAT,
+		Action editRedoAction = new Action(Messages.get("MarkdownEditorPane.editRedoAction"), "Shortcut+Y", REPEAT,
 			this::redo, canRedo.not());
 
-		Action insertBoldAction = new Action(Messages.get("MainWindow.insertBoldAction"), "Shortcut+B", BOLD,
-			() -> smartEdit.insertBold(Messages.get("MainWindow.insertBoldText")));
-		Action insertItalicAction = new Action(Messages.get("MainWindow.insertItalicAction"), "Shortcut+I", ITALIC,
-			() -> smartEdit.insertItalic(Messages.get("MainWindow.insertItalicText")));
-		Action insertStrikethroughAction = new Action(Messages.get("MainWindow.insertStrikethroughAction"), "Shortcut+T", STRIKETHROUGH,
-			() -> smartEdit.insertStrikethrough(Messages.get("MainWindow.insertStrikethroughText")));
-		Action insertCodeAction = new Action(Messages.get("MainWindow.insertCodeAction"), "Shortcut+K", CODE,
-			() -> smartEdit.insertInlineCode(Messages.get("MainWindow.insertCodeText")));
+		Action insertBoldAction = new Action(Messages.get("MarkdownEditorPane.insertBoldAction"), "Shortcut+B", BOLD,
+			() -> smartEdit.insertBold(Messages.get("MarkdownEditorPane.insertBoldText")));
+		Action insertItalicAction = new Action(Messages.get("MarkdownEditorPane.insertItalicAction"), "Shortcut+I", ITALIC,
+			() -> smartEdit.insertItalic(Messages.get("MarkdownEditorPane.insertItalicText")));
+		Action insertStrikethroughAction = new Action(Messages.get("MarkdownEditorPane.insertStrikethroughAction"), "Shortcut+T", STRIKETHROUGH,
+			() -> smartEdit.insertStrikethrough(Messages.get("MarkdownEditorPane.insertStrikethroughText")));
+		Action insertCodeAction = new Action(Messages.get("MarkdownEditorPane.insertCodeAction"), "Shortcut+K", CODE,
+			() -> smartEdit.insertInlineCode(Messages.get("MarkdownEditorPane.insertCodeText")));
 
-		Action insertLinkAction = new Action(Messages.get("MainWindow.insertLinkAction"), "Shortcut+L", LINK,
+		Action insertLinkAction = new Action(Messages.get("MarkdownEditorPane.insertLinkAction"), "Shortcut+L", LINK,
 			smartEdit::insertLink);
-		Action insertImageAction = new Action(Messages.get("MainWindow.insertImageAction"), "Shortcut+G", PICTURE_ALT,
+		Action insertImageAction = new Action(Messages.get("MarkdownEditorPane.insertImageAction"), "Shortcut+G", PICTURE_ALT,
 			smartEdit::insertImage);
 
-		Action insertUnorderedListAction = new Action(Messages.get("MainWindow.insertUnorderedListAction"), "Shortcut+U", LIST_UL,
+		Action insertUnorderedListAction = new Action(Messages.get("MarkdownEditorPane.insertUnorderedListAction"), "Shortcut+U", LIST_UL,
 			smartEdit::insertUnorderedList);
-		Action insertOrderedListAction = new Action(Messages.get("MainWindow.insertOrderedListAction"), "Shortcut+Shift+U", LIST_OL,
+		Action insertOrderedListAction = new Action(Messages.get("MarkdownEditorPane.insertOrderedListAction"), "Shortcut+Shift+U", LIST_OL,
 			() -> smartEdit.surroundSelection("\n\n1. ", ""));
-		Action insertBlockquoteAction = new Action(Messages.get("MainWindow.insertBlockquoteAction"), "Ctrl+Q", QUOTE_LEFT, // not Shortcut+Q because of conflict on Mac
+		Action insertBlockquoteAction = new Action(Messages.get("MarkdownEditorPane.insertBlockquoteAction"), "Ctrl+Q", QUOTE_LEFT, // not Shortcut+Q because of conflict on Mac
 			() -> smartEdit.surroundSelection("\n\n> ", ""));
-		Action insertFencedCodeBlockAction = new Action(Messages.get("MainWindow.insertFencedCodeBlockAction"), "Shortcut+Shift+K", FILE_CODE_ALT,
-			() -> smartEdit.surroundSelection("\n\n```\n", "\n```\n\n", Messages.get("MainWindow.insertFencedCodeBlockText")));
+		Action insertFencedCodeBlockAction = new Action(Messages.get("MarkdownEditorPane.insertFencedCodeBlockAction"), "Shortcut+Shift+K", FILE_CODE_ALT,
+			() -> smartEdit.surroundSelection("\n\n```\n", "\n```\n\n", Messages.get("MarkdownEditorPane.insertFencedCodeBlockText")));
 
-		Action insertHeader1Action = new Action(Messages.get("MainWindow.insertHeader1Action"), "Shortcut+1", HEADER,
-			() -> smartEdit.insertHeading(1, Messages.get("MainWindow.insertHeader1Text")));
+		Action insertHeader1Action = new Action(Messages.get("MarkdownEditorPane.insertHeader1Action"), "Shortcut+1", HEADER,
+			() -> smartEdit.insertHeading(1, Messages.get("MarkdownEditorPane.insertHeader1Text")));
 
-		Action editFindAction = new Action(Messages.get("MainWindow.editFindAction"), "Shortcut+F", SEARCH,
+		Action editFindAction = new Action(Messages.get("MarkdownEditorPane.editFindAction"), "Shortcut+F", SEARCH,
 			() -> find(false));
-		Action editReplaceAction = new Action(Messages.get("MainWindow.editReplaceAction"), "Shortcut+H", RETWEET,
+		Action editReplaceAction = new Action(Messages.get("MarkdownEditorPane.editReplaceAction"), "Shortcut+H", RETWEET,
 			() -> find(true));
-		Action editFindNextAction = new Action(Messages.get("MainWindow.editFindNextAction"), "F3", null,
+		Action editFindNextAction = new Action(Messages.get("MarkdownEditorPane.editFindNextAction"), "F3", null,
 			() -> findNextPrevious(true));
-		Action editFindPreviousAction = new Action(Messages.get("MainWindow.editFindPreviousAction"), "Shift+F3", null,
+		Action editFindPreviousAction = new Action(Messages.get("MarkdownEditorPane.editFindPreviousAction"), "Shift+F3", null,
 			() -> findNextPrevious(false));
 		//endregion Actions
 

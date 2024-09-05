@@ -40,9 +40,9 @@ import org.markdowneditorfx.util.ActionUtils;
 class SmartEditActions
 {
 	static void initContextMenu(MarkdownEditorPane editor, ContextMenu contextMenu, int characterIndex) {
-		Action cutAction = new Action(Messages.get("MainWindow.editCutAction"), "Shortcut+X", null, editor::cut);
-		Action copyAction = new Action(Messages.get("MainWindow.editCopyAction"), "Shortcut+C", null, editor::copy);
-		Action pasteAction = new Action(Messages.get("MainWindow.editPasteAction"), "Shortcut+V", null, editor::paste);
+		Action cutAction = new Action(Messages.get("MarkdownEditorPane.editCutAction"), "Shortcut+X", null, editor::cut);
+		Action copyAction = new Action(Messages.get("MarkdownEditorPane.editCopyAction"), "Shortcut+C", null, editor::copy);
+		Action pasteAction = new Action(Messages.get("MarkdownEditorPane.editPasteAction"), "Shortcut+V", null, editor::paste);
 		contextMenu.getItems().addAll(ActionUtils.createMenuItems(cutAction, copyAction, pasteAction));
 	}
 }
