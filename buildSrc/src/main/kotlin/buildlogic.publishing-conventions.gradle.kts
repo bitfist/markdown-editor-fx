@@ -16,8 +16,8 @@ publishing {
             version = project.version as String
 
             pom {
-                name.set("Particle")
-                description.set("Particle HTML UI for Java")
+                name.set("Markdown Editor FX")
+                description.set("Markdown editor component for JavaFX")
                 url.set("https://github.com/bitfist/markdown-editor-fx")
                 licenses {
                     license {
