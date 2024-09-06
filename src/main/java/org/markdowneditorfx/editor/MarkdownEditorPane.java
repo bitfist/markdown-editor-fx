@@ -114,7 +114,7 @@ public class MarkdownEditorPane {
 	private final HitsChangeListener findHitsChangeListener;
 	private Parser parser;
 	private String lineSeparator = getLineSeparatorOrDefault();
-	private ToolBar toolBar;
+	private final ToolBar toolBar;
 
 	private final SimpleIntegerProperty fontSizeProperty = new SimpleIntegerProperty(DEFAULT_FONT_SIZE);
 	private final boolean embedImages;
