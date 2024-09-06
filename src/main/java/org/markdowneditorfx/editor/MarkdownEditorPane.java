@@ -110,11 +110,11 @@ public class MarkdownEditorPane {
 	private final MarkdownTextArea textArea;
 	private ContextMenu contextMenu;
 	private final SmartEdit smartEdit;
-
 	private final FindReplacePane findReplacePane;
 	private final HitsChangeListener findHitsChangeListener;
 	private Parser parser;
 	private String lineSeparator = getLineSeparatorOrDefault();
+	private ToolBar toolBar;
 
 	private final SimpleIntegerProperty fontSizeProperty = new SimpleIntegerProperty(DEFAULT_FONT_SIZE);
 
@@ -225,7 +225,7 @@ public class MarkdownEditorPane {
 		//endregion Actions
 
 		//region Toolbar
-		ToolBar toolBar = ActionUtils.createToolBar(
+		toolBar = ActionUtils.createToolBar(
 			editUndoAction,
 			editRedoAction,
 			null,
@@ -299,6 +299,10 @@ public class MarkdownEditorPane {
 
 	public javafx.scene.Node getNode() {
 		return root;
+	}
+
+	public ToolBar getToolBar() {
+		return toolBar;
 	}
 
 	public boolean isReadOnly() {
@@ -487,24 +491,22 @@ public class MarkdownEditorPane {
 
 	Node parseMarkdown(String text) {
 		if (parser == null) {
-			parser = Parser.builder()
-			               .extensions(
-				               List.of(
-					               com.vladsch.flexmark.ext.abbreviation.AbbreviationExtension.create(),
-					               com.vladsch.flexmark.ext.anchorlink.AnchorLinkExtension.create(),
-					               com.vladsch.flexmark.ext.aside.AsideExtension.create(),
-					               com.vladsch.flexmark.ext.autolink.AutolinkExtension.create(),
-					               com.vladsch.flexmark.ext.definition.DefinitionExtension.create(),
-					               com.vladsch.flexmark.ext.footnotes.FootnoteExtension.create(),
-					               com.vladsch.flexmark.ext.gfm.strikethrough.StrikethroughExtension.create(),
-					               com.vladsch.flexmark.ext.tables.TablesExtension.create(),
-					               com.vladsch.flexmark.ext.gfm.tasklist.TaskListExtension.create(),
-					               com.vladsch.flexmark.ext.toc.TocExtension.create(),
-					               com.vladsch.flexmark.ext.wikilink.WikiLinkExtension.create(),
-					               com.vladsch.flexmark.ext.yaml.front.matter.YamlFrontMatterExtension.create()
-				               )
-			               )
-			               .build();
+			parser = Parser.builder().extensions(
+				List.of(
+					com.vladsch.flexmark.ext.abbreviation.AbbreviationExtension.create(),
+					com.vladsch.flexmark.ext.anchorlink.AnchorLinkExtension.create(),
+					com.vladsch.flexmark.ext.aside.AsideExtension.create(),
+					com.vladsch.flexmark.ext.autolink.AutolinkExtension.create(),
+					com.vladsch.flexmark.ext.definition.DefinitionExtension.create(),
+					com.vladsch.flexmark.ext.footnotes.FootnoteExtension.create(),
+					com.vladsch.flexmark.ext.gfm.strikethrough.StrikethroughExtension.create(),
+					com.vladsch.flexmark.ext.tables.TablesExtension.create(),
+					com.vladsch.flexmark.ext.gfm.tasklist.TaskListExtension.create(),
+					com.vladsch.flexmark.ext.toc.TocExtension.create(),
+					com.vladsch.flexmark.ext.wikilink.WikiLinkExtension.create(),
+					com.vladsch.flexmark.ext.yaml.front.matter.YamlFrontMatterExtension.create()
+				)
+			).build();
 		}
 		return parser.parse(text);
 	}
