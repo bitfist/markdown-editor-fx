@@ -4,9 +4,9 @@ plugins {
 }
 
 dependencies {
-	implementation("org.controlsfx:controlsfx:11.2.1")
-	implementation("com.miglayout:miglayout-javafx:11.4")
-	implementation( "org.fxmisc.richtext:richtextfx:0.11.3" )
+	api("org.controlsfx:controlsfx:11.2.1")
+	api("com.miglayout:miglayout-javafx:11.4")
+	api( "org.fxmisc.richtext:richtextfx:0.11.3" )
 }
 
 javafx {
