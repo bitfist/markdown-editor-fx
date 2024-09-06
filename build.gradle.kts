@@ -2,7 +2,6 @@ plugins {
 	id("buildlogic.javafx-conventions")
 	id("buildlogic.flexmark-conventions")
 	id("buildlogic.publishing-conventions")
-	id("buildlogic.version-conventions")
 }
 
 dependencies {
