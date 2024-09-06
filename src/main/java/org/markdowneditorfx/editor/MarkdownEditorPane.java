@@ -117,8 +117,15 @@ public class MarkdownEditorPane {
 	private ToolBar toolBar;
 
 	private final SimpleIntegerProperty fontSizeProperty = new SimpleIntegerProperty(DEFAULT_FONT_SIZE);
+	private final boolean embedImages;
 
 	public MarkdownEditorPane() {
+		this(false);
+	}
+
+	public MarkdownEditorPane(boolean embedImages) {
+		this.embedImages = embedImages;
+
 		textArea = new MarkdownTextArea();
 		textArea.setWrapText(true);
 		textArea.setUseInitialStyleForInsertion(true);
@@ -476,8 +483,9 @@ public class MarkdownEditorPane {
 
 		Node astRoot = parseMarkdown(newText);
 
-//		if (Options.isShowImagesEmbedded())
-//		EmbeddedImage.replaceImageSegments(textArea, astRoot, getParentPath());
+		if (embedImages) {
+			EmbeddedImage.replaceImageSegments(textArea, astRoot, getParentPath());
+		}
 
 		applyHighlighting(astRoot);
 
