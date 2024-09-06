@@ -3,6 +3,17 @@
 This project is directly ripped from [Markdown Writer FX](https://github.com/JFormDesigner/markdown-writer-fx) with the goal of providing a 
 standalone markdown component. Unlike Markdown Writer FX, this component is focused on editing markdown, a preview component is not included.
 
+## Usage
+
+```java
+public void myGui() {
+	MarkdownEditorPane markdownEditorPane = new MarkdownEditorPane();
+	
+	BorderPane borderPane = new BorderPane();
+	borderPane.setCenter(markdownEditorPane.getNode());
+}
+```
+
 ## Keyboard shortcuts
 
 Shortcut = Ctrl on Windows & Linux, Command on macOS
