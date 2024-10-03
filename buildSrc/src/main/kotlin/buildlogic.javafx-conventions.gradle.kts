@@ -3,10 +3,13 @@ plugins {
 	id("org.openjfx.javafxplugin")
 }
 
+val libs = the<org.gradle.accessors.dm.LibrariesForLibs>()
+
 dependencies {
-	api("org.controlsfx:controlsfx:11.2.1")
-	api("com.miglayout:miglayout-javafx:11.4")
-	api( "org.fxmisc.richtext:richtextfx:0.11.3" )
+	api(libs.controlsFx)
+	api(libs.fontawesomeFx)
+	api(libs.miglayoutFx)
+	api(libs.richTextFx)
 }
 
 javafx {

@@ -3,6 +3,8 @@ plugins {
     `java-library`
 }
 
+val libs = the<org.gradle.accessors.dm.LibrariesForLibs>()
+
 repositories {
     mavenCentral()
     mavenLocal()
@@ -11,9 +13,9 @@ repositories {
 java.sourceCompatibility = JavaVersion.VERSION_21
 
 dependencies {
-	testImplementation("org.mockito:mockito-core:5.12.0")
-	testImplementation("org.junit.jupiter:junit-jupiter:5.11.0")
+	testImplementation(libs.junit)
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	testImplementation(libs.mockito)
 }
 
 tasks.withType<JavaCompile> {
