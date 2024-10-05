@@ -3,7 +3,7 @@ commonsLang = { module = "org.apache.commons:commons-lang3", version = "3.17.0" 
 flexmarkPlatform = { module = "com.vladsch.flexmark:flexmark-java", version = "0.64.8" }
 controlsFx = { module = "org.controlsfx:controlsfx", version = "11.2.1" }
 fontawesomeFx = { module = "de.jensd:fontawesomefx-fontawesome", version = "4.7.0-9.1.2" }
-miglayoutFx = { module = "com.miglayout:miglayout-javafx", version = "11.4" }
+miglayoutFx = { module = "com.miglayout:miglayout-javafx", version = "11.4.2" }
 richTextFx = { module = "org.fxmisc.richtext:richtextfx", version = "0.11.3" }
 # Test
 junit = { module = "org.junit.jupiter:junit-jupiter", version = "5.11.2" }
