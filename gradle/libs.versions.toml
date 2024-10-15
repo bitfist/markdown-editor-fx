@@ -7,7 +7,7 @@ miglayoutFx = { module = "com.miglayout:miglayout-javafx", version = "11.4.2" }
 richTextFx = { module = "org.fxmisc.richtext:richtextfx", version = "0.11.3" }
 # Test
 junit = { module = "org.junit.jupiter:junit-jupiter", version = "5.11.2" }
-mockito = { module = "org.mockito:mockito-core", version = "5.14.1" }
+mockito = { module = "org.mockito:mockito-core", version = "5.14.2" }
 # Plugins
 semanticVersioning = { module = "com.github.jmongard:git-semver-plugin", version = "0.12.10" }
 javaFxPlugin = { module = "org.openjfx:javafx-plugin", version = "0.1.0" }
