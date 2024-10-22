@@ -6,7 +6,7 @@ fontawesomeFx = { module = "de.jensd:fontawesomefx-fontawesome", version = "4.7.
 miglayoutFx = { module = "com.miglayout:miglayout-javafx", version = "11.4.2" }
 richTextFx = { module = "org.fxmisc.richtext:richtextfx", version = "0.11.3" }
 # Test
-junit = { module = "org.junit.jupiter:junit-jupiter", version = "5.11.2" }
+junit = { module = "org.junit.jupiter:junit-jupiter", version = "5.11.3" }
 mockito = { module = "org.mockito:mockito-core", version = "5.14.2" }
 # Plugins
 semanticVersioning = { module = "com.github.jmongard:git-semver-plugin", version = "0.12.10" }
